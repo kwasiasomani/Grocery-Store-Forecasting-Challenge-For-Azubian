@@ -69,8 +69,6 @@ async def predict_sales(store_id: int, category_id: int, onpromotion: int, year:
 
  
     sales = make_predcition(Encoder, model, input)
-    print(sales)
-    print(type(sales[0]))
     sales_value = float(sales[0])
     return {'sales': sales_value}
 
