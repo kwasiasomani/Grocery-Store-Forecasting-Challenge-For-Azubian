@@ -38,7 +38,7 @@ This project combines machine learning and FastAPI to develop a powerful and sca
 
 10. [Collaborators](#collaborators)
 
-10. [Contact Information](#contact)
+11. [Contact Information](#contact)
 
 
 ## 1. Overview Of the Project <a name="overview"></a>
@@ -165,3 +165,108 @@ run the command:
             streamlit run src\app\app.py
 
 Open your browser and go to http://localhost:8501
+
+
+
+## 7. App Usage <a name="usage"></a>
+- The app will start running and display a Streamlit interface with input fields and a predict button.
+- Enter the inputs and click the predict button.
+- The app will generate the the predicted sales.
+- You can continue entering new inputs and getting new outputs as desired.
+- When you are finished using the app, you can close the Streamlit interface or terminate the app by pressing Ctrl+C in the terminal/command prompt.
+
+
+
+
+## 8. Contributing Instructions <a name="instructions"></a>
+To contribute to the Sentiment Analysis API, follow these guidelines:
+
+- Fork the repository.
+- Create a new branch: git checkout -b my-new-feature
+- Make your changes and commit them: git commit -am 'Add some feature'
+- Push to the branch: git push origin my-new-feature
+- Create a new pull request
+
+
+## 9. Collaborators <a name="collaborators"></a>
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <tr>
+    <td>Bright Eshun</td>
+  </tr>
+  <tr>
+    <td>Kwasi Asomani</td>
+  </tr>
+  <tr>
+    <td>Stella  Oiro</td>
+  </tr>
+  <tr>
+    <td>Linda Azdigbli</td>
+  </tr>
+    <tr>
+    <td>Foster Kwabena Abrefa</td>
+  
+  </tr>
+    <tr>
+    <td>Joshua</td>
+  </tr>
+</table>
+
+## 10. Contact Information <a name="contact"></a>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Twitter</th>
+    <th>LinkedIn</th>
+    <th>GitHub</th>
+    <th>Hugging Face</th>
+  </tr>
+  <tr>
+    <td>Bright Eshun</td>
+    <td><a href="https://twitter.com/bright_eshun_">@bright_eshun_</a></td>
+    <td><a href="https://www.linkedin.com/in/bright-eshun-9a8a51100/">@brighteshun</a></td>
+    <td><a href="https://github.com/Bright136">@bright136</a></td>
+    <td><a href="https://huggingface.co/bright1">@bright1</a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+</table>
