@@ -233,22 +233,7 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
   </tr>
   <tr>
     <td></td>
-    <td><a href=""</a></td>
     <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-  </tr>
-
-  <tr>
-    <td></td>
-    <td><a href=""</a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td><a href=""</a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
@@ -256,7 +241,14 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
 
   <tr>
     <td></td>
-    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
@@ -264,7 +256,15 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
 
   <tr>
     <td></td>
-    <td><a href=""</a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+    <td><a href=""></a></td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
