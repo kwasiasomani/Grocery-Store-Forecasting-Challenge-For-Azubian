@@ -12,16 +12,22 @@ import seaborn as sns
 import requests
 
 
-API_ENDPOINT = 'https://bright1-sales-forecasting-api.hf.space/'
+DIRPATH = os.path.dirname(os.path.realpath(__file__))
+
+app_data_path =os.path.join(DIRPATH, '..', '..', 'dev', 'datasets', 'app_data', 'Grocery.csv.crdownload')
+
+# set api endpoint
+URL = 'https://bright1-sales-forecasting-api.hf.space/'
+API_ENDPOINT = 'predict_sales'
 
 # Setting the page configurations
-st.set_page_config(page_title= "Prediction Forecasting", layout= "wide", initial_sidebar_state= "auto")
+st.set_page_config(page_title = "Prediction Forecasting", layout= "wide", initial_sidebar_state= "auto")
 
 # Setting the page title
 st.title("Grocery Store Forecasting Prediction")
 
 # Load the saved data
-df = pd.read_csv('Grocery.csv')
+df = pd.read_csv(app_data_path)
 
 
 toolkit = "toolkit_folder"
@@ -67,7 +73,7 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
     } 
 
 
-    response = requests.post(url=API_ENDPOINT, params=parameters)
+    response = requests.post(url=f'{URL}{API_ENDPOINT}', params=parameters)
     sales_value = response['output']
     sales_value = round(sales_value, 4)
     return sales_value
