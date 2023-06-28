@@ -5,17 +5,114 @@
 [![fastapi](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)](https://img.shields.io/badge/FastAPI-3776AB?style=for-the-badge&logo=fastapi&logoColor=white)
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
-<div align='center'> 
-    <img src="headerimage"/>
 
-# :open_file_folder: Dataset
 
-The dataset used is the [Grocery sales](https://zindi.africa/competitions/grocery-store-forecasting-challenge-for-azubian/data) public dataset. This is anonymised real data. The data looks at 54 different stores in the same country and 33 different products.
+# :open_file_folder: Dataset and Definitions
+Main variable definitions
+
+**Target**: the total sales for a product category at a particular store at a given date
+
+**Stores_id**: the unique store id
+
+**Category_id**: the unique Product category id
+
+**Date**: date in numerical representation
+
+**Onpromotion**: gives the total number of items in a Product category that were being promoted at a store at a given date
+
+**Nbr_of_transactions**: the total number of transactions happened at a store at a given date
+
+**year_weekofyear**: the combination of the year and the week of the year, (year_weekofyear = year*100+week_of_year
+
+**ID**: the unique identifier for each row in the testing set: year_week_{**year_weekofyear**}_{store_id}_{Category_id}
+
+
+
+The dataset used is the [Grocery sales](https://zindi.africa/competitions/grocery-store-forecasting-challenge-for-azubian/data),public dataset. 
+This is anonymised real data. The data looks at 54 different stores in the same country and 33 different products.
 The train set contains transaction information for 3 years and 6 months. You are tasked with forecasting the next 8 weeks for the same stores and same products. In this case the series is not stationary with some small seasonalities which change every year.
 
-In order to obtain a exact copy of the dataset used in this tutorial please run the [script](https://github.com/jiwidi/time-series-forecasting-wiki/blob/master/datasets/download_datasets.py) under `datasets/download_datasets.py` which will automatically download the dataset and preprocess it for you.
+In order to obtain a exact copy of the dataset used in this tutorial please run the [script](https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/tree/main/dev/datasets)  in which you will get acess to download the dataset.
 
-    
+
+#  📚 Analysis and transforms
+
+* Time series decomposition
+  * Level
+  * Trend
+  * Seasonality 
+  * Noise
+  
+* Stationarity
+  * AC and PAC plots
+  * Rolling mean and std
+  * Dickey-Fuller test
+  
+* Making our time series stationary
+  * Difference transform
+  * Log scale
+  * Smoothing
+  * Moving average
+
+
+# :triangular_ruler: Models tested
+* Randomforest [Link](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html?highlight=randomforest#sklearn.ensemble.RandomForestRegressor)
+* Nearest neighbors [Link](https://scikit-learn.org/stable/modules/neighbors.html)
+* XGBoost [Link](https://xgboost.readthedocs.io/en/latest/)
+* DecisionTree [Link](https://scikit-learn.org/stable/modules/tree.html
+* Autoregression ([AR](https://www.statsmodels.org/stable/generated/statsmodels.tsa.ar_model.AR.html))
+* Seasonal autoregressive integrated moving average (SARIMA)
+* Autoregressive integraded moving average (ARIMA)
+  
+## Evaluation Metrics
+* Root Mean Squared Error (RMSE)
+
+
+<table class="table table-bordered table-hover table-condensed">
+<thead><tr><th title="Field #1">Model</th>
+<th title="Field #3">RMSE</th>
+</tr></thead>
+<tbody><tr>
+
+
+
+<tr>
+<td>Randomforest </td>
+<td align="right">64.12</td>
+</tr>
+<tr>
+<td>Decision Tree </td>
+<td align="right">55.89</td>
+
+
+<tr>
+<td>XGBOOST</td>
+<td align="right">41.41</td>
+
+</tr>
+<tr>
+<td>KNN</td>
+<td align="right">49.93</td>
+
+
+<tr>
+<td>AR</td>
+<td align="right">206.0</td>
+
+<tr>
+<td>SARIMA</td>
+<td align="right">196.49</td>
+
+<tr>
+<td>ARIMA</td>
+<td align="right">191.14</td>
+
+</tr>
+</tbody></table>
+
+
+ 
+
 
 </div>
 
@@ -176,12 +273,11 @@ Open your browser and go to http://localhost:8501
 
 
 
-## 7. App Usage <a name="usage"></a>
-- The app will start running and display a Streamlit interface with input fields and a predict button.
-- Enter the inputs and click the predict button.
-- The app will generate the the predicted sales.
-- You can continue entering new inputs and getting new outputs as desired.
-- When you are finished using the app, you can close the Streamlit interface or terminate the app by pressing Ctrl+C in the terminal/command prompt.
+## 7. Power BI Visualization
+
+https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/assets/119458164/c2525faa-c05a-4326-9b3e-ae0b9632e335
+
+
 
 
 
@@ -278,3 +374,7 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
     <td><a href=""></a></td>
   </tr>
 </table>
+
+# Contributing
+Do you have anything to add or fix? I'll be happy to talk about it! Open an issue/PR :) 
+
