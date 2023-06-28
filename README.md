@@ -1,4 +1,4 @@
-# Grocery-Store-Forecasting-Challenge-For-Azubian
+# :hourglass_flowing_sand: Grocery-Store-Forecasting-Challenge-For-Azubian
 
 
 [![python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -7,6 +7,14 @@
 
 <div align='center'> 
     <img src="headerimage"/>
+
+# :open_file_folder: Dataset
+
+The dataset used is the [Grocery sales](https://zindi.africa/competitions/grocery-store-forecasting-challenge-for-azubian/data) public dataset. This is anonymised real data. The data looks at 54 different stores in the same country and 33 different products.
+The train set contains transaction information for 3 years and 6 months. You are tasked with forecasting the next 8 weeks for the same stores and same products. In this case the series is not stationary with some small seasonalities which change every year.
+
+In order to obtain a exact copy of the dataset used in this tutorial please run the [script](https://github.com/jiwidi/time-series-forecasting-wiki/blob/master/datasets/download_datasets.py) under `datasets/download_datasets.py` which will automatically download the dataset and preprocess it for you.
+
     
 
 </div>
