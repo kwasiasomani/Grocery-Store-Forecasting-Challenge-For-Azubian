@@ -21,8 +21,8 @@ DIRPATH = DIRPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.real
 app_data_path =os.path.join(DIRPATH,'dev', 'datasets', 'app_data', 'Grocery.csv.crdownload')
 
 # set api endpoint
-URL = 'https://bright1-sales-forecasting-api.hf.space/'
-API_ENDPOINT = 'predict_sales'
+URL = 'https://bright1-sales-forecasting-api.hf.space'
+API_ENDPOINT = '/predict'
 
 # Setting the page configurations
 st.set_page_config(page_title = "Prediction Forecasting", layout= "wide", initial_sidebar_state= "auto")
@@ -74,8 +74,7 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
 
 
     response = requests.post(url=f'{URL}{API_ENDPOINT}', params=parameters)
-    print(response)
-    sales_value = response['output']
+    sales_value = response.json()['sales']
     sales_value = round(sales_value, 4)
     return sales_value
 
@@ -118,7 +117,7 @@ if graph == 'Histogram':
 
 
 
-
+# input fields to collect the parameters
 if menu == 'Prediction target':
     st.image(image2, width = 460)
     
@@ -147,57 +146,13 @@ if menu == 'Prediction target':
 
 
 
-#     input_df = {
-#             'store_id':[store_id], 
-#             'category_id':[category_id], 
-#             'onpromotion' :[onpromotion], 
-#             'year' : [year], 
-#             'month' :[month], 
-#             'dayofmonth' :[dayofmonth],
-#             'dayofweek' : [dayofweek],
-#             'dayofyear' : [dayofyear], 
-#             'weekofyear' : weekofyear, 
-#             'quarter' : [quarter], 
-#             'is_month_start' : [is_month_start],
-#             'is_month_end' : [is_month_start], 
-#             'is_quarter_start' : [is_quarter_start], 
-#             'is_quarter_end' : [is_quarter_end], 
-#             'is_year_start' : [is_year_start],
-#             'is_year_end' : [is_year_end], 
-#             'year_weekofyear' : [year_weekofyear],
-#             'city' : [city], 
-#             'type' : [store_type], 
-#             'cluster': [cluster]
-# } 
-
-#  # Put the input dictionary in a dataset
-#     input_data = pd.DataFrame(input_df)
-
-
-
-# defining categories and numeric columns
-
-    # col = ['city']
-    # columns = list(input_data.columns)
-    # encoded_cat = Encoder.transform(input_data[col])
-    # encoded_cols = Encoder.get_feature_names()
-    # encoded_cat_ = pd.DataFrame(encoded_cat, columns=encoded_cols)
-
-
-    
-    # # we dropped the categorical encoder column before we concat 
-    # train_enc = input_data.drop(['city'],axis = 1)
-    # input_d = pd.concat([train_enc, encoded_cat_], axis=1)
-
-    # # convert input_data to a numpy array before flattening to convert it back to a 2D array
-    # input_df= input_d.to_numpy()
-    # prediction = model.predict(input_df.flatten().reshape(1, -1))
+    # make prediction 
     sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
                     dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
                     is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
                     year_weekofyear,city, store_type, cluster)
     
-
+    # get predicted value
     if st.button('Predict'):
                st.success('The predicted target is ' + str(sales_value))
   
