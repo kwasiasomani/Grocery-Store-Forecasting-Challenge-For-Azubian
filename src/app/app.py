@@ -12,8 +12,12 @@ import seaborn as sns
 import requests
 
 
-DIRPATH = DIRPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
+
+
+# get absolute path and goo two levels up
+DIRPATH = DIRPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+# get path for app data
 app_data_path =os.path.join(DIRPATH,'dev', 'datasets', 'app_data', 'Grocery.csv.crdownload')
 
 # set api endpoint
@@ -29,13 +33,9 @@ st.title("Grocery Store Forecasting Prediction")
 # Load the saved data
 df = pd.read_csv(app_data_path)
 
-
-toolkit = "toolkit_folder"
-@st.cache_resource
-def load_toolkit(filepath = toolkit):
-    with open(toolkit, "rb") as file:
-        loaded_toolkit = pickle.load(file)
-    return loaded_toolkit
+# src\app\images1.jpg
+image1 = Image.open('src/app/images1.jpg')
+image2 = Image.open('src/app/image 2.jpg')
 
 def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
                     dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
@@ -74,15 +74,16 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
 
 
     response = requests.post(url=f'{URL}{API_ENDPOINT}', params=parameters)
+    print(response)
     sales_value = response['output']
     sales_value = round(sales_value, 4)
     return sales_value
 
 
 
-toolkit = load_toolkit()
-Encoder = toolkit["OneHotEncoder"]
-model = toolkit["model"]
+# toolkit = load_toolkit()
+# Encoder = toolkit["OneHotEncoder"]
+# model = toolkit["model"]
 
 
 
@@ -91,7 +92,7 @@ menu = st.sidebar.radio('menu',['Home view','Prediction target'])
 
 if menu == 'Home view':
       st.write('Grocery Store Time Series Forecasting')
-      st.image('images1.jpg',width = 450)
+      st.image(image1, width=450)
       st.write('Graphical representation and Data Overview')
       if st.checkbox('Data Set '):
             st.table(df.head(15))
@@ -119,7 +120,7 @@ if graph == 'Histogram':
 
 
 if menu == 'Prediction target':
-    st.image('image 2.jpg', width = 460)
+    st.image(image2, width = 460)
     
     st.sidebar.markdown('User Input Details and Information')
 
@@ -191,9 +192,13 @@ if menu == 'Prediction target':
     # # convert input_data to a numpy array before flattening to convert it back to a 2D array
     # input_df= input_d.to_numpy()
     # prediction = model.predict(input_df.flatten().reshape(1, -1))
+    sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
+                    dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
+                    is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
+                    year_weekofyear,city, store_type, cluster)
     
 
     if st.button('Predict'):
-               st.success('The predicted target is ' + str(round(prediction[0],2)))
+               st.success('The predicted target is ' + str(sales_value))
   
   
