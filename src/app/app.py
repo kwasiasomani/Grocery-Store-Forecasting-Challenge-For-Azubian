@@ -9,8 +9,10 @@ from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
 import seaborn as sns
+import requests
 
 
+API_ENDPOINT = 'https://bright1-sales-forecasting-api.hf.space/'
 
 # Setting the page configurations
 st.set_page_config(page_title= "Prediction Forecasting", layout= "wide", initial_sidebar_state= "auto")
@@ -28,6 +30,48 @@ def load_toolkit(filepath = toolkit):
     with open(toolkit, "rb") as file:
         loaded_toolkit = pickle.load(file)
     return loaded_toolkit
+
+def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
+                    dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
+                    is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
+                    year_weekofyear,city, store_type, cluster):
+    
+    # (store_id: int, category_id: int, onpromotion: int, year: int,
+    #               month: int, dayofmonth: int, dayofweek: int, dayofyear: int,
+    #               weekofyear: int, quarter: int, is_month_start: int, is_quarter_start: int,
+    #               is_quarter_end: int, is_year_start: int, is_year_end: int, year_weekofyear: int,
+    #               city: str, store_type: int, cluster: int):
+    
+    parameters = {
+    'store_id':int(store_id), 
+    'category_id':int(category_id), 
+    'onpromotion' :int(onpromotion),
+    'year' : int(year), 
+    'month' : int(month), 
+    'dayofmonth' :int(dayofmonth),
+    'dayofweek' : int(dayofweek),
+    'dayofyear' : int(dayofyear), 
+    'weekofyear' : int(weekofyear), 
+    'quarter' : int(quarter),
+    'is_month_start' : int(is_month_start),
+    'is_month_end' : int(is_month_start), 
+    'is_quarter_start' : int(is_quarter_start), 
+    'is_quarter_end' : int(is_quarter_end), 
+    'is_year_start' : int(is_year_start),
+    'is_year_end' : (is_year_end), 
+    'year_weekofyear' : int(year_weekofyear),
+    'city' : city,
+    'store_type' : int(store_type), 
+    'cluster': int(cluster),
+
+    } 
+
+
+    response = requests.post(url=API_ENDPOINT, params=parameters)
+    sales_value = response['output']
+    sales_value = round(sales_value, 4)
+    return sales_value
+
 
 
 toolkit = load_toolkit()
@@ -96,51 +140,51 @@ if menu == 'Prediction target':
 
 
 
-    input_df = {
-            'store_id':[store_id], 
-            'category_id':[category_id], 
-            'onpromotion' :[onpromotion], 
-            'year' : [year], 
-            'month' :[month], 
-            'dayofmonth' :[dayofmonth],
-            'dayofweek' : [dayofweek],
-            'dayofyear' : [dayofyear], 
-            'weekofyear' : weekofyear, 
-            'quarter' : [quarter], 
-            'is_month_start' : [is_month_start],
-            'is_month_end' : [is_month_start], 
-            'is_quarter_start' : [is_quarter_start], 
-            'is_quarter_end' : [is_quarter_end], 
-            'is_year_start' : [is_year_start],
-            'is_year_end' : [is_year_end], 
-            'year_weekofyear' : [year_weekofyear],
-            'city' : [city], 
-            'type' : [store_type], 
-            'cluster': [cluster]
-} 
+#     input_df = {
+#             'store_id':[store_id], 
+#             'category_id':[category_id], 
+#             'onpromotion' :[onpromotion], 
+#             'year' : [year], 
+#             'month' :[month], 
+#             'dayofmonth' :[dayofmonth],
+#             'dayofweek' : [dayofweek],
+#             'dayofyear' : [dayofyear], 
+#             'weekofyear' : weekofyear, 
+#             'quarter' : [quarter], 
+#             'is_month_start' : [is_month_start],
+#             'is_month_end' : [is_month_start], 
+#             'is_quarter_start' : [is_quarter_start], 
+#             'is_quarter_end' : [is_quarter_end], 
+#             'is_year_start' : [is_year_start],
+#             'is_year_end' : [is_year_end], 
+#             'year_weekofyear' : [year_weekofyear],
+#             'city' : [city], 
+#             'type' : [store_type], 
+#             'cluster': [cluster]
+# } 
 
- # Put the input dictionary in a dataset
-    input_data = pd.DataFrame(input_df)
+#  # Put the input dictionary in a dataset
+#     input_data = pd.DataFrame(input_df)
 
 
 
 # defining categories and numeric columns
 
-    col = ['city']
-    columns = list(input_data.columns)
-    encoded_cat = Encoder.transform(input_data[col])
-    encoded_cols = Encoder.get_feature_names()
-    encoded_cat_ = pd.DataFrame(encoded_cat, columns=encoded_cols)
+    # col = ['city']
+    # columns = list(input_data.columns)
+    # encoded_cat = Encoder.transform(input_data[col])
+    # encoded_cols = Encoder.get_feature_names()
+    # encoded_cat_ = pd.DataFrame(encoded_cat, columns=encoded_cols)
 
 
     
-    # we dropped the categorical encoder column before we concat 
-    train_enc = input_data.drop(['city'],axis = 1)
-    input_d = pd.concat([train_enc, encoded_cat_], axis=1)
+    # # we dropped the categorical encoder column before we concat 
+    # train_enc = input_data.drop(['city'],axis = 1)
+    # input_d = pd.concat([train_enc, encoded_cat_], axis=1)
 
-    # convert input_data to a numpy array before flattening to convert it back to a 2D array
-    input_df= input_d.to_numpy()
-    prediction = model.predict(input_df.flatten().reshape(1, -1))
+    # # convert input_data to a numpy array before flattening to convert it back to a 2D array
+    # input_df= input_d.to_numpy()
+    # prediction = model.predict(input_df.flatten().reshape(1, -1))
     
 
     if st.button('Predict'):
