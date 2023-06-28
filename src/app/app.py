@@ -12,9 +12,9 @@ import seaborn as sns
 import requests
 
 
-DIRPATH = os.path.dirname(os.path.realpath(__file__))
+DIRPATH = DIRPATH = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-app_data_path =os.path.join(DIRPATH, '..', '..', 'dev', 'datasets', 'app_data', 'Grocery.csv.crdownload')
+app_data_path =os.path.join(DIRPATH,'dev', 'datasets', 'app_data', 'Grocery.csv.crdownload')
 
 # set api endpoint
 URL = 'https://bright1-sales-forecasting-api.hf.space/'
