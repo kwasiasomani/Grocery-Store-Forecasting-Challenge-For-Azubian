@@ -25,7 +25,9 @@ ml_contents = load_file(ml_contents_path)
 Encoder = ml_contents["OneHotEncoder"]
 model = ml_contents["model"]
 
+# Get-ChildItem -Path 'src' -Filter "*.pyc" -Recurse | Remove-Item -Force
 
+# del /s /q src\*.pyc
 
 
 
@@ -40,7 +42,7 @@ def check_health():
 @app.post('/predict')
 async def predict_sales(store_id: int, category_id: int, onpromotion: int, year: int,
                   month: int, dayofmonth: int, dayofweek: int, dayofyear: int,
-                  weekofyear: int, quarter: int, is_month_start: int, is_quarter_start: int,
+                  weekofyear: int, quarter: int, is_month_start: int, is_month_end: int, is_quarter_start: int,
                   is_quarter_end: int, is_year_start: int, is_year_end: int, year_weekofyear: int,
                   city: str, store_type: int, cluster: int):
 
@@ -58,7 +60,7 @@ async def predict_sales(store_id: int, category_id: int, onpromotion: int, year:
     'weekofyear' : weekofyear, 
     'quarter' : [quarter], 
     'is_month_start' : [is_month_start],
-    'is_month_end' : [is_month_start], 
+    'is_month_end' : [is_month_end], 
     'is_quarter_start' : [is_quarter_start], 
     'is_quarter_end' : [is_quarter_end], 
     'is_year_start' : [is_year_start],

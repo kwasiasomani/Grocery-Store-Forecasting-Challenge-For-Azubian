@@ -42,11 +42,6 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
                     is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
                     year_weekofyear,city, store_type, cluster):
     
-    # (store_id: int, category_id: int, onpromotion: int, year: int,
-    #               month: int, dayofmonth: int, dayofweek: int, dayofyear: int,
-    #               weekofyear: int, quarter: int, is_month_start: int, is_quarter_start: int,
-    #               is_quarter_end: int, is_year_start: int, is_year_end: int, year_weekofyear: int,
-    #               city: str, store_type: int, cluster: int):
     
     parameters = {
     'store_id':int(store_id), 
@@ -79,81 +74,41 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
     return sales_value
 
 
+st.image(image1, width = 700)
 
-# toolkit = load_toolkit()
-# Encoder = toolkit["OneHotEncoder"]
-# model = toolkit["model"]
+st.sidebar.markdown('User Input Details and Information')
 
-
-
-# main sections of the app
-menu = st.sidebar.radio('menu',['Home view','Prediction target'])
-
-if menu == 'Home view':
-      st.write('Grocery Store Time Series Forecasting')
-      st.image(image1, width=450)
-      st.write('Graphical representation and Data Overview')
-      if st.checkbox('Data Set '):
-            st.table(df.head(15))
-st.title('Charts')
-graph = st.selectbox('Varieties of graphs',['scatter plot','Bar chat','Histogram'])
-if graph == 'scatter plot':
-      fig,ax = plt.subplots(figsize=(10,5))
-      sns.scatterplot(y = 'target',x = 'onpromotion',data = df.iloc[:1000],palette = 'bright',hue = 'city');
-      st.pyplot(fig)
-
-if graph == 'Bar chat':
-       fig,ax = plt.subplots(figsize=(10,5))
-       t = df.groupby("city")["target"].sum().reset_index().sort_values(by="target",ascending=False).iloc[:10]
-       sns.barplot(data=t[:20] , y="target", x="city", palette='Blues_d')
-       st.pyplot(fig)
-
-if graph == 'Histogram':
-        fig,ax = plt.subplots(figsize=(10,5))
-        st.write('Target Categories')
-        sns.distplot(df.target.iloc[:20], kde=True)
-        st.pyplot(fig)
-      
+store_id= st.sidebar.selectbox('store_id', options = sorted(list(df['store_id'].unique())))
+category_id= st.sidebar.selectbox('categegory_id',options = sorted(list(df['category_id'].unique())))
+onpromotion= st.sidebar.number_input('onpromotion', min_value= df["onpromotion"].min(), value= df["onpromotion"].min())
+year = st.sidebar.selectbox('year', options = sorted(list(df['year'].unique())))
+month = st.sidebar.selectbox('month', options = sorted(list(df['month'].unique())))
+dayofmonth= st.sidebar.number_input('dayofmonth', min_value= df["dayofmonth"].min(), value= df["dayofmonth"].min())
+dayofweek = st.sidebar.number_input('dayofweek', min_value= df["dayofweek"].min(), value= df["dayofweek"].min())
+dayofyear = st.sidebar.number_input('dayofyear', min_value= df["dayofyear"].min(), value= df["dayofyear"].min())
+weekofyear = st.sidebar.number_input('weekofyear', min_value= df["weekofyear"].min(), value= df["weekofyear"].min())
+quarter  = st.sidebar.number_input('quarter', min_value= df["quarter"].min(), value= df["quarter"].min())
+is_month_start = st.sidebar.number_input('is_month_start', min_value= df["is_month_start"].min(), value= df["is_month_start"].min())
+is_month_end = st.sidebar.number_input('is_month_end', min_value= df["is_month_end"].min(), value= df["is_month_end"].min())
+is_quarter_start = st.sidebar.number_input('is_quarter_start', min_value= df["is_quarter_start"].min(), value= df["is_quarter_start"].min())
+is_quarter_end = st.sidebar.number_input('is_quarter_end', min_value= df["is_quarter_end"].min(), value= df["is_quarter_end"].min())
+is_year_start = st.sidebar.number_input('is_year_start', min_value= df["is_year_start"].min(), value= df["is_year_start"].min())
+is_year_end = st.sidebar.number_input('is_year_end', min_value= df["is_year_end"].min(), value= df["is_year_end"].min())
+year_weekofyear = st.sidebar.number_input('year_weekofyear', min_value= df["year_weekofyear"].min(), value= df["year_weekofyear"].min())
+city =  st.sidebar.selectbox("city:", options= sorted(set(df["city"])))
+store_type=  st.sidebar.number_input('type', min_value= df["type"].min(), value= df["type"].min())
+cluster = st.sidebar.selectbox('cluster', options = sorted(list(df['cluster'].unique())))
 
 
 
-# input fields to collect the parameters
-if menu == 'Prediction target':
-    st.image(image2, width = 460)
-    
-    st.sidebar.markdown('User Input Details and Information')
+# make prediction 
+sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
+                  dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
+                  is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
+                  year_weekofyear,city, store_type, cluster)
 
-    store_id= st.sidebar.selectbox('store_id', options = sorted(list(df['store_id'].unique())))
-    category_id= st.sidebar.selectbox('categegory_id',options = sorted(list(df['category_id'].unique())))
-    onpromotion= st.sidebar.number_input('onpromotion', min_value= df["onpromotion"].min(), value= df["onpromotion"].min())
-    year = st.sidebar.selectbox('year', options = sorted(list(df['year'].unique())))
-    month = st.sidebar.selectbox('month', options = sorted(list(df['month'].unique())))
-    dayofmonth= st.sidebar.number_input('dayofmonth', min_value= df["dayofmonth"].min(), value= df["dayofmonth"].min())
-    dayofweek = st.sidebar.number_input('dayofweek', min_value= df["dayofweek"].min(), value= df["dayofweek"].min())
-    dayofyear = st.sidebar.number_input('dayofyear', min_value= df["dayofyear"].min(), value= df["dayofyear"].min())
-    weekofyear = st.sidebar.number_input('weekofyear', min_value= df["weekofyear"].min(), value= df["weekofyear"].min())
-    quarter  = st.sidebar.number_input('quarter', min_value= df["quarter"].min(), value= df["quarter"].min())
-    is_month_start = st.sidebar.number_input('is_month_start', min_value= df["is_month_start"].min(), value= df["is_month_start"].min())
-    is_month_end = st.sidebar.number_input('is_month_end', min_value= df["is_month_end"].min(), value= df["is_month_end"].min())
-    is_quarter_start = st.sidebar.number_input('is_quarter_start', min_value= df["is_quarter_start"].min(), value= df["is_quarter_start"].min())
-    is_quarter_end = st.sidebar.number_input('is_quarter_end', min_value= df["is_quarter_end"].min(), value= df["is_quarter_end"].min())
-    is_year_start = st.sidebar.number_input('is_year_start', min_value= df["is_year_start"].min(), value= df["is_year_start"].min())
-    is_year_end = st.sidebar.number_input('is_year_end', min_value= df["is_year_end"].min(), value= df["is_year_end"].min())
-    year_weekofyear = st.sidebar.number_input('year_weekofyear', min_value= df["year_weekofyear"].min(), value= df["year_weekofyear"].min())
-    city =  st.sidebar.selectbox("city:", options= sorted(set(df["city"])))
-    store_type=  st.sidebar.number_input('type', min_value= df["type"].min(), value= df["type"].min())
-    cluster = st.sidebar.selectbox('cluster', options = sorted(list(df['cluster'].unique())))
-
-
-
-    # make prediction 
-    sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
-                    dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
-                    is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
-                    year_weekofyear,city, store_type, cluster)
-    
-    # get predicted value
-    if st.button('Predict'):
-               st.success('The predicted target is ' + str(sales_value))
+# get predicted value
+if st.button('Predict'):
+            st.success('The predicted target is ' + str(sales_value))
   
   

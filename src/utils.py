@@ -35,5 +35,6 @@ def make_predcition(Encoder, model, input_df):
 
     # # convert input_data to a numpy array before flattening to convert it back to a 2D array
     # input_df= input_d.to_numpy()
+    print(model.get_booster().feature_names)
     prediction = model.predict(input_d)
     return prediction
