@@ -38,7 +38,7 @@ image1 = Image.open('src/app/images1.jpg')
 image2 = Image.open('src/app/image 2.jpg')
 
 def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
-                    dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
+                    dayofweek, dayofyear,weekofyear, quarter, is_month_start, is_month_end,
                     is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
                     year_weekofyear,city, store_type, cluster):
     
@@ -55,7 +55,7 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
     'weekofyear' : int(weekofyear), 
     'quarter' : int(quarter),
     'is_month_start' : int(is_month_start),
-    'is_month_end' : int(is_month_start), 
+    'is_month_end' : int(is_month_end), 
     'is_quarter_start' : int(is_quarter_start), 
     'is_quarter_end' : int(is_quarter_end), 
     'is_year_start' : int(is_year_start),
@@ -103,7 +103,7 @@ cluster = st.sidebar.selectbox('cluster', options = sorted(list(df['cluster'].un
 
 # make prediction 
 sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
-                  dayofweek, dayofyear,weekofyear, quarter, is_month_start, 
+                  dayofweek, dayofyear,weekofyear, quarter, is_month_start, is_month_end, 
                   is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
                   year_weekofyear,city, store_type, cluster)
 
