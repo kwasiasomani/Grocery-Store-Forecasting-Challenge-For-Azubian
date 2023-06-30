@@ -35,6 +35,7 @@ import datetime
 
 def date_extracts(df):
     # Extract date features
+    df['date_'] = pd.to_datetime(df['date_'], errors='coerce')
     df['year'] = df['date_'].dt.year
     df['month'] = df['date_'].dt.month
     df['dayofmonth'] = df['date_'].dt.day
@@ -42,12 +43,13 @@ def date_extracts(df):
     df['dayofyear'] = df['date_'].dt.dayofyear
     df['weekofyear'] = df['date_'].dt.weekofyear
     df['quarter'] = df['date_'].dt.quarter
-    df['is_month_start'] = df['date_'].dt.is_month_start
-    df['is_month_end'] = df['date_'].dt.is_month_end
-    df['is_quarter_start'] = df['date_'].dt.is_quarter_start
-    df['is_quarter_end'] = df['date_'].dt.is_quarter_end
-    df['is_year_start'] = df['date_'].dt.is_year_start
-    df['is_year_end'] = df['date_'].dt.is_year_end
+    df['is_month_start'] = df['date_'].dt.is_month_start.astype(int)
+    df['is_month_end'] = df['date_'].dt.is_month_end.astype(int)
+    df['is_quarter_start'] = df['date_'].dt.is_quarter_start.astype(int)
+    df['is_quarter_end'] = df['date_'].dt.is_quarter_end.astype(int)
+    df['is_year_start'] = df['date_'].dt.is_year_start.astype(int)
+    df['is_year_end'] = df['date_'].dt.is_year_end.astype(int)
+    df.drop(columns=['date_'], inplace=True)
 
 
 
@@ -62,7 +64,7 @@ def check_health():
 
 @app.post('/predict')
 async def predict_sales( store_id: int, category_id: int, onpromotion: int,
-                  city: str, store_type: int, cluster: int, date: Annotated[datetime.date, "The date of sales"] = datetime.date.today()):
+                  city: str, store_type: int, cluster: int, date_: Annotated[datetime.date, "The date of sales"] = datetime.date.today()):
 
     input = {
     'store_id':[store_id], 
@@ -70,9 +72,15 @@ async def predict_sales( store_id: int, category_id: int, onpromotion: int,
     'onpromotion' :[onpromotion],
     'type' : [store_type], 
     'cluster': [cluster],
-    'city' : [city]
+    'city' : [city],
+    'date_': [date_]
     }   
-    input_data = pd.DataFrame()
+
+    print(type(date_))
+    print(date_)
+    input_data = pd.DataFrame(input)
+    date_extracts(input_data)
+    print(f'INFO: {input_data.info()}')
  
     # sales = make_predcition(Encoder, model, input)
     # sales_value = float(sales[0])
