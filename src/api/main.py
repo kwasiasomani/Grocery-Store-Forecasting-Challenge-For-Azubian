@@ -3,11 +3,9 @@ import uvicorn
 import os
 import sys
 
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from src.utils import load_file, make_predcition
-
-
-
 
 
 # Create an instance of FastAPI
@@ -19,26 +17,26 @@ DIRPATH = os.path.dirname(os.path.realpath(__file__))
 # set path for ml files
 ml_contents_path = os.path.join(DIRPATH, '..', 'assets', 'ml_components', 'toolkit_folder')
 
-
+#  load mll components 
 ml_contents = load_file(ml_contents_path)
 
+# get inidividual components
 Encoder = ml_contents["OneHotEncoder"]
 model = ml_contents["model"]
 
-# Get-ChildItem -Path 'src' -Filter "*.pyc" -Recurse | Remove-Item -Force
-
-# del /s /q src\*.pyc
-
-
-
+#  define api endpoints
+#  root
 @app.get('/')
 def root():
     return 'Welcome to the Gorecery Sales Forecasting API'
 
+
+#  health
 @app.get('/health')
 def check_health():
     return {'status': 'ok'}
 
+#  predict 
 @app.post('/predict')
 async def predict_sales(store_id: int, category_id: int, onpromotion: int, year: int,
                   month: int, dayofmonth: int, dayofweek: int, dayofyear: int,
@@ -46,6 +44,7 @@ async def predict_sales(store_id: int, category_id: int, onpromotion: int, year:
                   is_quarter_end: int, is_year_start: int, is_year_end: int, year_weekofyear: int,
                   city: str, store_type: int, cluster: int):
 
+    #  collect all data inputs into a dictionary
     input = {
     'store_id':[store_id], 
     'category_id':[category_id], 
@@ -69,8 +68,9 @@ async def predict_sales(store_id: int, category_id: int, onpromotion: int, year:
     'city' : [city]
     }   
 
- 
+    #  make prediction
     sales = make_predcition(Encoder, model, input)
+    #  get sales value
     sales_value = float(sales[0])
     return {'sales': sales_value}
 

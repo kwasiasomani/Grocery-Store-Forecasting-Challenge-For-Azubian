@@ -37,12 +37,14 @@ df = pd.read_csv(app_data_path)
 image1 = Image.open('src/app/images1.jpg')
 image2 = Image.open('src/app/image 2.jpg')
 
+#  create a function to receive inputs, and make calls to the api
+
 def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
                     dayofweek, dayofyear,weekofyear, quarter, is_month_start, is_month_end,
                     is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
                     year_weekofyear,city, store_type, cluster):
     
-    
+    #  define parameters
     parameters = {
     'store_id':int(store_id), 
     'category_id':int(category_id), 
@@ -67,9 +69,11 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
 
     } 
 
-
+    #  make a post request to the api
     response = requests.post(url=f'{URL}{API_ENDPOINT}', params=parameters)
+    #  get the dales value from the output returned
     sales_value = response.json()['sales']
+    # round up sales value to 4 decimal places
     sales_value = round(sales_value, 4)
     return sales_value
 
@@ -77,6 +81,8 @@ def make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth,
 st.image(image1, width = 700)
 
 st.sidebar.markdown('User Input Details and Information')
+
+#  create interface for the app
 
 store_id= st.sidebar.selectbox('store_id', options = sorted(list(df['store_id'].unique())))
 category_id= st.sidebar.selectbox('categegory_id',options = sorted(list(df['category_id'].unique())))
@@ -101,14 +107,15 @@ cluster = st.sidebar.selectbox('cluster', options = sorted(list(df['cluster'].un
 
 
 
-# make prediction 
-sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
-                  dayofweek, dayofyear,weekofyear, quarter, is_month_start, is_month_end, 
-                  is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
-                  year_weekofyear,city, store_type, cluster)
+
 
 # get predicted value
 if st.button('Predict'):
+            # make prediction 
+            sales_value = make_prediction(store_id, category_id, onpromotion, year,month, dayofmonth, 
+                  dayofweek, dayofyear,weekofyear, quarter, is_month_start, is_month_end, 
+                  is_quarter_start, is_quarter_end, is_year_start, is_year_end, 
+                  year_weekofyear,city, store_type, cluster)
             st.success('The predicted target is ' + str(sales_value))
   
   
