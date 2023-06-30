@@ -62,10 +62,6 @@ def make_predcition(Encoder, model, input_df):
     input_d = pd.concat([train_enc, encoded_cat_], axis=1)
     input_d = input_d.reindex(columns=return_features())
 
-    # print(input_d)
-
-    # # convert input_data to a numpy array before flattening to convert it back to a 2D array
-    # input_df= input_d.to_numpy()
-    print(model.get_booster().feature_names)
+    #  get sales values 
     prediction = model.predict(input_d)
     return prediction

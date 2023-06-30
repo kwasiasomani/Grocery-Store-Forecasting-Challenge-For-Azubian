@@ -24,7 +24,7 @@ CITIES = ['Accra', 'Aflao', 'Akim Oda', 'Akwatia', 'Bekwai', 'Cape coast', 'Elmi
 CLUSTER = [ i for i in range(0, 17)]
 STORE_ID = [ i for i in range(1, 55)]
 CATEGORY_ID = [ i for i in range(0, 35)]
-print(CATEGORY_ID)
+
 
 # Setting the page configurations
 st.set_page_config(page_title = "Prediction Forecasting", layout= "wide", initial_sidebar_state= "auto")
@@ -51,10 +51,13 @@ def make_prediction(store_id, category_id, onpromotion, city, store_type, cluste
 
     } 
 
+    # make a request to the api
     response = requests.post(url=f'{URL}{API_ENDPOINT}', params=parameters)
+    
     sales_value = response.json()['sales']
+
     sales_value = round(sales_value, 4)
-    return 'sales_value'
+    return sales_value
 
 
 st.image(image1, width = 700)
@@ -71,7 +74,7 @@ store_type=  st.sidebar.selectbox('type', options=[0, 1, 2, 3, 4])
 cluster = st.sidebar.selectbox('cluster', options = CLUSTER )
 
 # make prediction 
-sales_value = make_prediction(store_id, category_id, onpromotion,city, store_type, cluster)
+sales_value = make_prediction(store_id, category_id, onpromotion,city, store_type, cluster, date)
 
 # get predicted value
 if st.sidebar.button('Predict', use_container_width=True, type='primary'):
