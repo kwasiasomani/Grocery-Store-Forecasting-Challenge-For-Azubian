@@ -2,12 +2,14 @@ from fastapi import FastAPI
 import uvicorn
 from datetime import datetime
 from typing import Annotated
+import tabulate
 import os
 import sys
 import datetime
 import pandas as pd
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from src.utils import load_file, make_predcition
+from src.utils import load_file, make_predcition, date_extracts
 
 
 
@@ -27,30 +29,7 @@ ml_contents = load_file(ml_contents_path)
 
 Encoder = ml_contents["OneHotEncoder"]
 model = ml_contents["model"]
-
-# Get-ChildItem -Path 'src' -Filter "*.pyc" -Recurse | Remove-Item -Force
-
-# del /s /q src\*.pyc
-import datetime
-
-def date_extracts(df):
-    # Extract date features
-    df['date_'] = pd.to_datetime(df['date_'], errors='coerce')
-    df['year'] = df['date_'].dt.year
-    df['month'] = df['date_'].dt.month
-    df['dayofmonth'] = df['date_'].dt.day
-    df['dayofweek'] = df['date_'].dt.dayofweek
-    df['dayofyear'] = df['date_'].dt.dayofyear
-    df['weekofyear'] = df['date_'].dt.weekofyear
-    df['quarter'] = df['date_'].dt.quarter
-    df['is_month_start'] = df['date_'].dt.is_month_start.astype(int)
-    df['is_month_end'] = df['date_'].dt.is_month_end.astype(int)
-    df['is_quarter_start'] = df['date_'].dt.is_quarter_start.astype(int)
-    df['is_quarter_end'] = df['date_'].dt.is_quarter_end.astype(int)
-    df['is_year_start'] = df['date_'].dt.is_year_start.astype(int)
-    df['is_year_end'] = df['date_'].dt.is_year_end.astype(int)
-    df.drop(columns=['date_'], inplace=True)
-
+features_ = ml_contents['feature_names']
 
 
 
@@ -76,15 +55,13 @@ async def predict_sales( store_id: int, category_id: int, onpromotion: int,
     'date_': [date_]
     }   
 
-    print(type(date_))
-    print(date_)
     input_data = pd.DataFrame(input)
     date_extracts(input_data)
-    print(f'INFO: {input_data.info()}')
+    print(f'INFO: {input_data.to_markdown()}')
  
-    # sales = make_predcition(Encoder, model, input)
-    # sales_value = float(sales[0])
-    return {'sales': 'sales_value'}
+    sales = make_predcition(Encoder, model, input)
+    sales_value = float(sales[0])
+    return {'sales': sales_value}
 
 
 
@@ -94,22 +71,3 @@ if __name__ == "__main__":
 
 
 
-
-
-
-    # def date_extracts(data):
-    # data['Year'] = data.index.year
-    # data['Month'] = data.index.month
-    # data['DayOfMonth'] = data.index.day
-    # data['DaysInMonth'] = data.index.days_in_month
-    # data['DayOfYear'] = data.index.day_of_year
-    # data['DayOfWeek'] = data.index.dayofweek
-    # data['Week'] = data.index.isocalendar().week
-    # data['Is_weekend'] = np.where(data['DayOfWeek'] > 4, 1, 0)
-    # data['Is_month_start'] = data.index.is_month_start.astype(int)
-    # data['Is_month_end'] = data.index.is_month_end.astype(int)
-    # data['Quarter'] = data.index.quarter
-    # data['Is_quarter_start'] = data.index.is_quarter_start.astype(int)
-    # data['Is_quarter_end'] = data.index.is_quarter_end.astype(int)
-    # data['Is_year_start'] = data.index.is_year_start.astype(int)
-    # data['Is_year_end'] = data.index.is_year_end.astype(int)
