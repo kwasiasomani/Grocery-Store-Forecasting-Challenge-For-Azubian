@@ -57,7 +57,7 @@ async def predict_sales( store_id: int, category_id: int, onpromotion: int,
 
     input_data = pd.DataFrame(input)
     date_extracts(input_data)
-    print(f'INFO: {input_data.to_markdown()}')
+
  
     sales = make_predcition(Encoder, model, input)
     sales_value = float(sales[0])
