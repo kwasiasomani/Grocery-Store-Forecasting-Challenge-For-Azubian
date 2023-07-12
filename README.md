@@ -1,13 +1,52 @@
 # :hourglass_flowing_sand: Grocery-Store-Forecasting-Challenge-For-Azubian
 
+## Project Description 
+This project combines machine learning and FastAPI to develop a powerful and scalable application for predictive analytics and real-time data processing."
 
 [![python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 [![fastapi](https://img.shields.io/badge/FastAPI-009485?style=for-the-badge&logo=fastapi&logoColor=white)](https://img.shields.io/badge/FastAPI-3776AB?style=for-the-badge&logo=fastapi&logoColor=white)
 [![Open Source Love png1](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
+## Table of Contents
+1. [Overview Of the Project](#overview)
+
+      [Description of dataset](#dataset)
+      [Analysis and transforms](#analysis)
+
+2. [Application / Deployed Links](#application)
+
+3. [Technology Stack](#technology)
+
+4. [Deliverables](#deliverables)
+
+5. [Installation](#installation)
+
+6. [Execution](#execution)
+
+7. [API Endpoints](#api-endpoints)
+
+8. [App Usage](#usage)
+
+9. [Screenshots](#screenshots)
+
+10. [Contributing Instructions](#instructions)
+
+11. [Collaborators](#collaborators)
+
+12. [Contact Information](#contact)
 
 
-# :open_file_folder: Dataset and Definitions
+
+
+
+
+## 1. Overview Of the Project <a name="overview"></a>
+This project is about building machine learning models to forecastsales on an anonymized data. The product from the model will used to build an API which will be embeded inyo our streamlit forecasting app.
+
+
+### i. Description of dataset <a name="dataset"></a>
+
+
 Main variable definitions
 
 **Target**: the total sales for a product category at a particular store at a given date
@@ -35,7 +74,7 @@ The train set contains transaction information for 3 years and 6 months. You are
 In order to obtain a exact copy of the dataset used in this tutorial please run the [script](https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/tree/main/dev/datasets)  in which you will get acess to download the dataset.
 
 
-#  📚 Analysis and transforms
+###  ii. Analysis and transforms <a name="analysis"></a>
 
 * Time series decomposition
   * Level
@@ -55,7 +94,7 @@ In order to obtain a exact copy of the dataset used in this tutorial please run 
   * Moving average
 
 
-# :triangular_ruler: Models tested
+#### :triangular_ruler: Models tested
 * Randomforest [Link](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html?highlight=randomforest#sklearn.ensemble.RandomForestRegressor)
 * Nearest neighbors [Link](https://scikit-learn.org/stable/modules/neighbors.html)
 * XGBoost [Link](https://xgboost.readthedocs.io/en/latest/)
@@ -64,144 +103,95 @@ In order to obtain a exact copy of the dataset used in this tutorial please run 
 * Seasonal autoregressive integrated moving average (SARIMA)
 * Autoregressive integraded moving average (ARIMA)
   
-## Evaluation Metrics
+#### Evaluation Metrics
 * Root Mean Squared Error (RMSE)
 
 
 <table class="table table-bordered table-hover table-condensed">
-<thead><tr><th title="Field #1">Model</th>
-<th title="Field #3">RMSE</th>
-</tr></thead>
-<tbody><tr>
+  <thead>
+    <tr>
+      <th title="Field #1">Model</th>
+      <th title="Field #3">RMSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Randomforest </td>
+      <td align="right">64.12</td>
+    </tr>
+    <tr>
+      <td>Decision Tree </td>
+      <td align="right">55.89</td>
+    <tr>
+      <td>XGBOOST</td>
+      <td align="right">41.41</td>
+    </tr>
+    <tr>
+      <td>KNN</td>
+      <td align="right">49.93</td>
+    <tr>
+      <td>AR</td>
+      <td align="right">206.0</td>
+    <tr>
+      <td>SARIMA</td>
+      <td align="right">196.49</td>
+    <tr>
+      <td>ARIMA</td>
+      <td align="right">191.14</td>
+    </tr>
+  </tbody>
+  </table>
 
 
+  ## 2. Application / Deployed Links <a name="application"></a>
 
-<tr>
-<td>Randomforest </td>
-<td align="right">64.12</td>
-</tr>
-<tr>
-<td>Decision Tree </td>
-<td align="right">55.89</td>
+  <table>
+    <tr>
+      <th>App</th>
+      <th>Deployed links</th>
+    </tr>
+    <tr>
+      <td>Streamlit App</td>
+      <td><a href="https://huggingface.co/spaces/KwabenaMufasa/Grocery_Store_Time_Series_Forecasting">Sales forecasring App with streamlit</a></td>
+    </tr>
+    <tr>
+      <td>Api</td>
+      <td><a href="https://bright1-sales-forecasting-ap1-2.hf.space/docs">Sales forecasring App with FastAPI</a></td>
+    </tr>
 
+  </table>
 
-<tr>
-<td>XGBOOST</td>
-<td align="right">41.41</td>
-
-</tr>
-<tr>
-<td>KNN</td>
-<td align="right">49.93</td>
-
-
-<tr>
-<td>AR</td>
-<td align="right">206.0</td>
-
-<tr>
-<td>SARIMA</td>
-<td align="right">196.49</td>
-
-<tr>
-<td>ARIMA</td>
-<td align="right">191.14</td>
-
-</tr>
-</tbody></table>
-
-
- 
-
-
-</div>
-
-## Project Description 
-This project combines machine learning and FastAPI to develop a powerful and scalable application for predictive analytics and real-time data processing."
-
-
-## Table of Contents
-1. [Overview Of the Project](#overview)
-
-  - [Description of dataset](#dataset)
-
-2. [Application / Deployed Links](#application)
-
-3. [Technology Stack](#technology)
-
-4. [Deliverables](#deliverables)
-
-5. [Installation](#installation)
-
-6. [Execution](#execution)
-
-7. [API Endpoints](#api-endpoints)
-
-8. [App Usage](#usage)
-
-9. [Contributing Instructions](#instructions)
-
-10. [Collaborators](#collaborators)
-
-11. [Contact Information](#contact)
-
-
-## 1. Overview Of the Project <a name="overview"></a>
-
-
-
-### i. Description of dataset <a name="dataset"></a>
-
-
-## 2. Application / Deployed Links <a name="application"></a>
-
-<table>
-  <tr>
-    <th>App</th>
-    <th>Deployed links</th>
-  </tr>
-  <tr>
-    <td>Streamlit App</td>
-    <td><a href="">Sales forecasring App with streamlit</a></td>
-  </tr>
-  <tr>
-    <td>Api</td>
-    <td><a href="">Sales forecasring App with FastAPI</a></td>
-  </tr>
-
-</table>
-
-## 3. Technology Stack <a name="technology"></a>
- 
-<table>
-  <tr>
-    <th>Technology</th>
-    <th>Version</th>
-  </tr>
-  <tr>
-    <td>Python</td>
-    <td>3.9</td>
-  </tr>
-  <tr>
-    <td>Sckit-learn</td>
-    <td>0.24.1</td>
-  </tr>
-  <tr>
-    <td>XGboost</td>
-    <td>1.7.3</td>
-  </tr>
-  <tr>
-    <td>FastAPI</td>
-    <td>0.98.0</td>
-  </tr>
-  <tr>
-    <td>Streamlit</td>
-    <td>1.23.1</td>
-  </tr>
-  <tr>
-    <td>Uvicorn</td>
-    <td>0.22.0</td>
-  </tr>
+  ## 3. Technology Stack <a name="technology"></a>
+  
+  <table>
+    <tr>
+      <th>Technology</th>
+      <th>Version</th>
+    </tr>
+    <tr>
+      <td>Python</td>
+      <td>3.9</td>
+    </tr>
+    <tr>
+      <td>Sckit-learn</td>
+      <td>0.24.1</td>
+    </tr>
+    <tr>
+      <td>XGboost</td>
+      <td>1.7.3</td>
+    </tr>
+    <tr>
+      <td>FastAPI</td>
+      <td>0.98.0</td>
+    </tr>
+    <tr>
+      <td>Streamlit</td>
+      <td>1.23.1</td>
+    </tr>
+    <tr>
+      <td>Uvicorn</td>
+      <td>0.22.0</td>
+    </tr>
 </table>
 
 ## 4. Deliverables <a name="deliverables"></a>
@@ -231,7 +221,7 @@ Create a new virtual environment and activate the virtual:
 
         python3 -m venv venv; source venv/bin/activate; python -m pip install -q --upgrade pip; python -m pip install -qr requirements.txt
 
-## Execution
+## 6. Execution
 1. Notebooks
 To run any the notebooks:
 - Navigate the project folder on anaconda terminal  `root :: Grocery-Store-Forecasting-Challenge-For-Azubian> ...`
@@ -273,7 +263,35 @@ Open your browser and go to http://localhost:8501
 
 
 
-## 7. Power BI Visualization
+
+## 7. API Endpoints <a name="api-endpoints"></a>
+
+1. **/**: This Endpoint display a welcome message-” Welcome to the Sepsis API...”.
+2. **/health**: Checks status of the API
+4. **/predict**: Recieve inouts and retuens a single 
+
+## 8. App Usage <a name="usage"></a>
+To test the various endpoints of the API using the provided documentation, follow these steps:
+
+1. Start by accessing the API documentation, which provides detailed information about the available endpoints and their functionalities.
+
+2. Locate the section that describes the input fields and parameters required for each endpoint. It will specify the expected data format, such as JSON or form data, and the necessary input fields.
+
+
+4. Enter the required input data into the corresponding input fields or parameters as specified in the documentation.
+
+5. Send the request by clicking the "Execute" button or using the appropriate method in your chosen tool. The API will process the request and generate the output based on the provided inputs.
+
+6. Retrieve the response from the API, which will contain the generated output. This output may include predictions, probability scores, or any other relevant information related to sepsis prediction.
+
+7. Repeat the process to test different endpoints or vary the input data to explore the capabilities of the API. Make sure to follow the documentation's guidelines for each endpoint to ensure accurate results.
+
+Note: You can access the app and the use the same process test our app.
+
+
+## 9. Screenshots
+
+Power BI Visualization
 
 https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/assets/119458164/c2525faa-c05a-4326-9b3e-ae0b9632e335
 
@@ -282,7 +300,7 @@ https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/
 
 
 
-## 8. Contributing Instructions <a name="instructions"></a>
+## 10. Contributing Instructions <a name="instructions"></a>
 To contribute to the Sentiment Analysis API, follow these guidelines:
 
 - Fork the repository.
@@ -292,7 +310,7 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
 - Create a new pull request
 
 
-## 9. Collaborators <a name="collaborators"></a>
+## 11. Collaborators <a name="collaborators"></a>
 <table>
   <tr>
     <th>Name</th>
@@ -318,7 +336,7 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
   </tr>
 </table>
 
-## 10. Contact Information <a name="contact"></a>
+## 12. Contact Information <a name="contact"></a>
 
 <table>
   <tr>
@@ -337,25 +355,25 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
   </tr>
   <tr>
     <td></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
+    <td><a href="https://twitter.com/EnochMaxwellson?t=AgNVmbDXDoIJOs9wcsZgLw&s=09">@enochmaxwellson</a></td>
+    <td><a href="https://www.linkedin.com/in/joshua-maxwellson-316642121"></a>enochmaxwellson</td>
+    <td><a href="https://github.com/Maxwellson"></a>enochmaxwellson</td>
+    <td><a href="https://huggingface.co/settings/profile"></a>enochmaxwellson</td>
   </tr>
 
   <tr>
     <td></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
+    <td><a href=" https://twitter.com/Stella_Oiro">@Achar</a></td>
+    <td><a href="https://www.linkedin.com/in/stella-achar-oiro/">@Achar</a></td>
+    <td><a href="https://github.com/Stella-Achar-Oiro">@Achar</a></td>
+    <td><a href="https://huggingface.co/Achar">@Achar</a></td>
   </tr>
   <tr>
     <td></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
-    <td><a href=""></a></td>
+    <td><a href="https://twitter.com/kwabena_MuFaSa"></a>@kwabenaabrefa</td>
+    <td><a href="https://www.linkedin.com/in/foster-nana-kwabena-abrefa-3b917b34/">@kwabenaabrefa</a></td>
+    <td><a href="https://github.com/KwabenaMufasa"></a>@kwabenaabrefa</td>
+    <td><a href="https://huggingface.co/KwabenaMufasa"></a>@kwabenaabrefa</td>
   </tr>
 
   <tr>
