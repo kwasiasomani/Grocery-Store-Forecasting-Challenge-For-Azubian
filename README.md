@@ -36,10 +36,6 @@ This project combines machine learning and FastAPI to develop a powerful and sca
 12. [Contact Information](#contact)
 
 
-
-
-
-
 ## 1. Overview Of the Project <a name="overview"></a>
 This project is about building machine learning models to forecastsales on an anonymized data. The product from the model will used to build an API which will be embeded inyo our streamlit forecasting app.
 
@@ -354,30 +350,32 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
     <td><a href="https://huggingface.co/bright1">@bright1</a></td>
   </tr>
   <tr>
-    <td></td>
+    <td>Joshua Enoch Maxwellson</td>
     <td><a href="https://twitter.com/EnochMaxwellson?t=AgNVmbDXDoIJOs9wcsZgLw&s=09">@enochmaxwellson</a></td>
-    <td><a href="https://www.linkedin.com/in/joshua-maxwellson-316642121"></a>enochmaxwellson</td>
-    <td><a href="https://github.com/Maxwellson"></a>enochmaxwellson</td>
-    <td><a href="https://huggingface.co/settings/profile"></a>enochmaxwellson</td>
+    <td><a href="https://www.linkedin.com/in/joshua-maxwellson-316642121">enochmaxwellson</a>
+    </td>
+    <td><a href="https://github.com/Maxwellson">enochmaxwellson</a>
+    </td>
+    <td><a href="https://huggingface.co/settings/profile">enochmaxwellson</a></td>
   </tr>
 
   <tr>
-    <td></td>
+    <td>Stella Achar</td>
     <td><a href=" https://twitter.com/Stella_Oiro">@Achar</a></td>
     <td><a href="https://www.linkedin.com/in/stella-achar-oiro/">@Achar</a></td>
     <td><a href="https://github.com/Stella-Achar-Oiro">@Achar</a></td>
     <td><a href="https://huggingface.co/Achar">@Achar</a></td>
   </tr>
   <tr>
-    <td></td>
-    <td><a href="https://twitter.com/kwabena_MuFaSa"></a>@kwabenaabrefa</td>
+    <td>Foster Kwabena Abrefa</td>
+    <td><a href="https://twitter.com/kwabena_MuFaSa">@kwabenaabrefa</a></td>
     <td><a href="https://www.linkedin.com/in/foster-nana-kwabena-abrefa-3b917b34/">@kwabenaabrefa</a></td>
-    <td><a href="https://github.com/KwabenaMufasa"></a>@kwabenaabrefa</td>
-    <td><a href="https://huggingface.co/KwabenaMufasa"></a>@kwabenaabrefa</td>
+    <td><a href="https://github.com/KwabenaMufasa">@kwabenaabrefa</a></td>
+    <td><a href="https://huggingface.co/KwabenaMufasa">@kwabenaabrefa</a></td>
   </tr>
 
   <tr>
-    <td></td>
+    <td>Linda Adzigbli</td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
@@ -385,7 +383,7 @@ To contribute to the Sentiment Analysis API, follow these guidelines:
   </tr>
 
   <tr>
-    <td></td>
+    <td>Kwasi Asomani</td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
     <td><a href=""></a></td>
