@@ -148,7 +148,7 @@ In order to obtain a exact copy of the dataset used in this tutorial please run 
     </tr>
     <tr>
       <td>Streamlit App</td>
-      <td><a href="https://huggingface.co/spaces/KwabenaMufasa/Grocery_Store_Time_Series_Forecasting">Sales forecasring App with streamlit</a></td>
+      <td><a href="https://kwabenamufasa-grocery-store-time-series-forecasting.hf.space/">Sales forecasring App with streamlit</a></td>
     </tr>
     <tr>
       <td>Api</td>
@@ -291,7 +291,18 @@ Power BI Visualization
 
 https://github.com/kwasiasomani/Grocery-Store-Forecasting-Challenge-For-Azubian/assets/119458164/c2525faa-c05a-4326-9b3e-ae0b9632e335
 
+API
+<div align='center'> 
+    <img src="https://drive.google.com/uc?export=view&id=1HStQUBLvDv0bQXaCv2wnkPBCMMj4_dcP"/>
 
+</div>
+
+
+App
+<div align='center'> 
+    <img src="https://drive.google.com/uc?export=view&id=1PlbHKyG8_P0dA8hoeCGpgkhHMzdri74q"/>
+
+</div>
 
 
 
